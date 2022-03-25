@@ -1,6 +1,6 @@
-Jinja2==3.0.0 \
-    --hash=sha256:2f2de5285cf37f33d33ecd4a9080b75c87cd0c1994d5a9c6df17131ea1f049c6 \
-    --hash=sha256:ea8d7dd814ce9df6de6a761ec7f1cac98afe305b8cdc4aaae4e114b8d8ce24c5
+Jinja2==3.1.0 \
+    --hash=sha256:a2f09a92f358b96b5f6ca6ecb4502669c4acb55d8733bbb2b2c9c4af5564c605 \
+    --hash=sha256:da424924c069a4013730d8dd010cbecac7e7bb752be388db3741688bffb48dc6
 MarkupSafe==2.0.0 \
     --hash=sha256:2efaeb1baff547063bad2b2893a8f5e9c459c4624e1a96644bbba08910ae34e0 \
     --hash=sha256:441ce2a8c17683d97e06447fcbccbdb057cbf587c78eb75ae43ea7858042fe2c \
