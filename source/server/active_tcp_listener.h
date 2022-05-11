@@ -79,7 +79,7 @@ public:
   Network::TcpConnectionHandler& tcp_conn_handler_;
   // The number of connections currently active on this listener. This is typically used for
   // connection balancing across per-handler listeners.
-  std::atomic<uint64_t> num_listener_connections_{};
+  std::atomic<uint64_t> num_listener_connections_{0};
 };
 
 using ActiveTcpListenerOptRef = absl::optional<std::reference_wrapper<ActiveTcpListener>>;

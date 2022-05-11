@@ -70,12 +70,12 @@ private:
   // under a mutex so that they are consistent with their use_counts. this
   // avoids the possibility of two threads racing to claim being the main/test
   // thread.
-  std::atomic<std::thread::id> main_thread_id_;
+  std::atomic<std::thread::id> main_thread_id_{};
 
   int32_t main_thread_use_count_ GUARDED_BY(mutex_) = 0;
   mutable absl::Mutex mutex_;
 
-  std::atomic<uint32_t> skip_asserts_{};
+  std::atomic<uint32_t> skip_asserts_{0};
 };
 
 } // namespace

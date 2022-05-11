@@ -53,7 +53,7 @@ private:
   Runtime::FeatureFlag enabled_;
   ConnectionLimitStats stats_;
   const uint64_t max_connections_;
-  std::atomic<uint64_t> connections_;
+  std::atomic<uint64_t> connections_{0};
   absl::optional<std::chrono::milliseconds> delay_;
   mutable Thread::ThreadSynchronizer synchronizer_; // Used for testing only.
 

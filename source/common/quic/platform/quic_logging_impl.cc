@@ -43,7 +43,7 @@ private:
     verbosity_threshold_.store(verbosity, std::memory_order_relaxed);
   }
 
-  std::atomic<int> verbosity_threshold_;
+  std::atomic<int> verbosity_threshold_{0};
 };
 
 std::atomic<bool> g_dfatal_exit_disabled;

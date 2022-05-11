@@ -32,7 +32,7 @@ struct SharedMemory {
   uint64_t version_;
   pthread_mutex_t log_lock_;
   pthread_mutex_t access_log_lock_;
-  std::atomic<uint64_t> flags_;
+  std::atomic<uint64_t> flags_{0};
 };
 static const uint64_t SHMEM_FLAGS_INITIALIZING = 0x1;
 

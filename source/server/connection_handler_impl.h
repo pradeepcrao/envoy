@@ -94,7 +94,7 @@ private:
   Event::Dispatcher& dispatcher_;
   const std::string per_handler_stat_prefix_;
   std::list<std::pair<Network::Address::InstanceConstSharedPtr, ActiveListenerDetails>> listeners_;
-  std::atomic<uint64_t> num_handler_connections_{};
+  std::atomic<uint64_t> num_handler_connections_{0};
   bool disable_listeners_;
   UnitFloat listener_reject_fraction_{UnitFloat::min()};
 };

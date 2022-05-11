@@ -68,8 +68,8 @@ struct HostSuccessRatePair {
 };
 
 struct SuccessRateAccumulatorBucket {
-  std::atomic<uint64_t> success_request_counter_;
-  std::atomic<uint64_t> total_request_counter_;
+  std::atomic<uint64_t> success_request_counter_{0};
+  std::atomic<uint64_t> total_request_counter_{0};
 };
 
 /**
@@ -126,7 +126,7 @@ public:
 
 private:
   SuccessRateAccumulator success_rate_accumulator_;
-  std::atomic<SuccessRateAccumulatorBucket*> success_rate_accumulator_bucket_;
+  std::atomic<SuccessRateAccumulatorBucket*> success_rate_accumulator_bucket_{nullptr};
   envoy::data::cluster::v3::OutlierEjectionType ejection_type_;
   double success_rate_;
 };

@@ -67,7 +67,7 @@ private:
   uint64_t otherHistogramIndex() const { return 1 - current_active_; }
   uint64_t current_active_;
   histogram_t* histograms_[2];
-  std::atomic<bool> used_;
+  std::atomic<bool> used_{false};
   std::thread::id created_thread_id_;
   SymbolTable& symbol_table_;
 };
@@ -513,9 +513,9 @@ private:
   TagProducerPtr tag_producer_;
   StatsMatcherPtr stats_matcher_;
   HistogramSettingsConstPtr histogram_settings_;
-  std::atomic<bool> threading_ever_initialized_{};
-  std::atomic<bool> shutting_down_{};
-  std::atomic<bool> merge_in_progress_{};
+  std::atomic<bool> threading_ever_initialized_{false};
+  std::atomic<bool> shutting_down_{false};
+  std::atomic<bool> merge_in_progress_{false};
   AllocatorImpl heap_allocator_;
   OptRef<ThreadLocal::Instance> tls_;
 
@@ -525,7 +525,7 @@ private:
   NullTextReadoutImpl null_text_readout_;
 
   Thread::ThreadSynchronizer sync_;
-  std::atomic<uint64_t> next_scope_id_{};
+  std::atomic<uint64_t> next_scope_id_{0};
   uint64_t next_histogram_id_ ABSL_GUARDED_BY(hist_mutex_) = 0;
 
   StatNameSetPtr well_known_tags_;

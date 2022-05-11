@@ -67,7 +67,7 @@ private:
   Thread::ThreadFactoryImplWin32 thread_factory_;
   HANDLE thread_exit_event_;
   std::vector<HANDLE> dir_watch_complete_events_;
-  std::atomic<bool> keep_watching_;
+  std::atomic<bool> keep_watching_{false};
   concurrency::concurrent_queue<CbClosure> active_callbacks_;
   Api::OsSysCallsImpl& os_sys_calls_;
   std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> wstring_converter_;

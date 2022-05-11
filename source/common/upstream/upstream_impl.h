@@ -179,7 +179,7 @@ private:
   Network::Address::InstanceConstSharedPtr address_;
   std::vector<Network::Address::InstanceConstSharedPtr> address_list_;
   Network::Address::InstanceConstSharedPtr health_check_address_;
-  std::atomic<bool> canary_;
+  std::atomic<bool> canary_{false};
   mutable absl::Mutex metadata_mutex_;
   MetadataConstSharedPtr metadata_ ABSL_GUARDED_BY(metadata_mutex_);
   const envoy::config::core::v3::Locality locality_;
@@ -187,7 +187,7 @@ private:
   mutable HostStats stats_;
   Outlier::DetectorHostMonitorPtr outlier_detector_;
   HealthCheckHostMonitorPtr health_checker_;
-  std::atomic<uint32_t> priority_;
+  std::atomic<uint32_t> priority_{0};
   std::reference_wrapper<Network::TransportSocketFactory>
       socket_factory_ ABSL_GUARDED_BY(metadata_mutex_);
   const MonotonicTime creation_time_;
@@ -277,9 +277,9 @@ protected:
 private:
   void setEdsHealthFlag(envoy::config::core::v3::HealthStatus health_status);
 
-  std::atomic<uint32_t> health_flags_{};
-  std::atomic<uint32_t> weight_;
-  std::atomic<bool> used_;
+  std::atomic<uint32_t> health_flags_{0};
+  std::atomic<uint32_t> weight_{0};
+  std::atomic<bool> used_{false};
 };
 
 class HostsPerLocalityImpl : public HostsPerLocality {

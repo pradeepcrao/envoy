@@ -49,7 +49,7 @@ getGoogleGrpcChannelCredentials(const envoy::config::core::v3::GrpcService& grpc
 struct BufferInstanceContainer {
   BufferInstanceContainer(int ref_count, Buffer::InstancePtr&& buffer)
       : ref_count_(ref_count), buffer_(std::move(buffer)) {}
-  std::atomic<uint32_t> ref_count_; // In case gPRC dereferences in a different threads.
+  std::atomic<uint32_t> ref_count_{0}; // In case gPRC dereferences in a different threads.
   Buffer::InstancePtr buffer_;
 
   static void derefBufferInstanceContainer(void* container_ptr) {

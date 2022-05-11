@@ -61,7 +61,7 @@ void ConnectionImplUtility::updateBufferStats(uint64_t delta, uint64_t new_total
   }
 }
 
-std::atomic<uint64_t> ConnectionImpl::next_global_id_;
+std::atomic<uint64_t> ConnectionImpl::next_global_id_{0};
 
 ConnectionImpl::ConnectionImpl(Event::Dispatcher& dispatcher, ConnectionSocketPtr&& socket,
                                TransportSocketPtr&& transport_socket,

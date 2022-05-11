@@ -255,7 +255,7 @@ private:
 
   // Stores the value of the concurrency limit prior to entering the minRTT update window. If this
   // is non-zero, then we are actively in the minRTT sampling window.
-  std::atomic<uint32_t> deferred_limit_value_;
+  std::atomic<uint32_t> deferred_limit_value_{0};
 
   // Stores the expected upstream latency value under ideal conditions with the added buffer to
   // account for variable latencies. This is the numerator in the gradient value.
@@ -267,11 +267,11 @@ private:
   // Tracks the count of requests that have been forwarded whose replies have
   // not been sampled yet. Atomicity is required because this variable is used to make the
   // forwarding decision without locking.
-  std::atomic<uint32_t> num_rq_outstanding_;
+  std::atomic<uint32_t> num_rq_outstanding_{0};
 
   // Stores the current concurrency limit. Atomicity is required because this variable is used to
   // make the forwarding decision without locking.
-  std::atomic<uint32_t> concurrency_limit_;
+  std::atomic<uint32_t> concurrency_limit_{0};
 
   // Stores all sampled latencies and provides percentile estimations when using the sampled data to
   // calculate a new concurrency limit.
